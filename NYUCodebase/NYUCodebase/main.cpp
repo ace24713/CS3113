@@ -5,11 +5,7 @@
 #include <SDL_opengl.h>
 #include <SDL_image.h>
 
-#ifdef _WINDOWS
-	#define RESOURCE_FOLDER ""
-#else
-	#define RESOURCE_FOLDER "NYUCodebase.app/Contents/Resources/"
-#endif
+#include "Game.h"
 
 SDL_Window* displayWindow;
 
@@ -23,6 +19,8 @@ int main(int argc, char *argv[])
 		glewInit();
 	#endif
 
+	Game myGame;
+
 	SDL_Event event;
 	bool done = false;
 	while (!done) {
@@ -31,7 +29,9 @@ int main(int argc, char *argv[])
 				done = true;
 			}
 		}
+		myGame.step();
 		glClear(GL_COLOR_BUFFER_BIT);
+		myGame.draw();
 		SDL_GL_SwapWindow(displayWindow);
 	}
 
