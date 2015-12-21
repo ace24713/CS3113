@@ -6,6 +6,7 @@
 PlayerController::PlayerController()
 {
 	setPlayer(PlayerID::PLAYER_1);
+	lastInput = NO_INPUT;
 }
 
 void PlayerController::setPlayer(PlayerID id)
@@ -13,19 +14,21 @@ void PlayerController::setPlayer(PlayerID id)
 	keymap.clear();
 	switch (id)
 	{
-	case PLAYER_1:
-		keymap[STRONG_ATTACK] = SDL_SCANCODE_I;
-		keymap[LIGHT_ATTACK] = SDL_SCANCODE_O;
-		keymap[JUMP] = SDL_SCANCODE_P;
+	case PLAYER_2:
+		keymap[THROW_CATCH] = SDL_SCANCODE_O;
+		keymap[STRONG_ATTACK] = SDL_SCANCODE_P;
+		keymap[LIGHT_ATTACK] = SDL_SCANCODE_LEFTBRACKET;
+		keymap[JUMP] = SDL_SCANCODE_RIGHTBRACKET;
 		keymap[UP] = SDL_SCANCODE_UP;
 		keymap[DOWN] = SDL_SCANCODE_DOWN;
 		keymap[LEFT] = SDL_SCANCODE_LEFT;
 		keymap[RIGHT] = SDL_SCANCODE_RIGHT;
 		break;
-	case PLAYER_2:
-		keymap[STRONG_ATTACK] = SDL_SCANCODE_Z;
-		keymap[LIGHT_ATTACK] = SDL_SCANCODE_X;
-		keymap[JUMP] = SDL_SCANCODE_C;
+	case PLAYER_1:
+		keymap[THROW_CATCH] = SDL_SCANCODE_C;
+		keymap[STRONG_ATTACK] = SDL_SCANCODE_V;
+		keymap[LIGHT_ATTACK] = SDL_SCANCODE_B;
+		keymap[JUMP] = SDL_SCANCODE_N;
 		keymap[UP] = SDL_SCANCODE_W;
 		keymap[DOWN] = SDL_SCANCODE_S;
 		keymap[LEFT] = SDL_SCANCODE_A;
@@ -36,6 +39,15 @@ void PlayerController::setPlayer(PlayerID id)
 
 PlayerInput PlayerController::getInput()
 {
+	PlayerInput i = readInput();
+	if (i == lastInput)
+		return NO_INPUT;
+	lastInput = i;
+	return i;
+}
+
+PlayerInput PlayerController::readInput()
+{
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
 	if (keys[keymap[LIGHT_ATTACK]])
@@ -44,6 +56,8 @@ PlayerInput PlayerController::getInput()
 		return STRONG_ATTACK;
 	else if (keys[keymap[JUMP]])
 		return JUMP;
+	else if (keys[keymap[THROW_CATCH]])
+		return THROW_CATCH;
 	return NO_INPUT;
 }
 

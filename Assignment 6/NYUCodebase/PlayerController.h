@@ -15,6 +15,7 @@ enum PlayerInput
 	NO_INPUT,
 	LIGHT_ATTACK,
 	STRONG_ATTACK,
+	THROW_CATCH,
 	JUMP,
 
 	NO_DIRECTION,
@@ -37,6 +38,8 @@ public:
 	float getInputY();
 
 private:
+	PlayerInput readInput();
+	PlayerInput lastInput;
 	std::map<PlayerInput, SDL_Scancode> keymap;
 };
 

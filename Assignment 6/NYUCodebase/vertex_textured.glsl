@@ -10,6 +10,6 @@ varying vec2 texCoordVar;
 void main()
 {
 	vec4 p = viewMatrix * modelMatrix  * position;
-    texCoordVar = texCoord;
+    texCoordVar = vec2(texCoord.x, 1. - texCoord.y);
 	gl_Position = projectionMatrix * p;
 }

@@ -75,23 +75,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ClassDemoApp.cpp" />
+    <ClCompile Include="LooseSwordEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="PlayerEntity.cpp" />
     <ClCompile Include="RectangleEntity.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="TexturedRectangle.cpp" />
+    <ClCompile Include="TextureFont.cpp" />
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassDemoApp.h" />
     <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="LooseSwordEntity.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="PlayerEntity.h" />
     <ClInclude Include="RectangleEntity.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="TexturedRectangle.h" />
+    <ClInclude Include="TextureFont.h" />
     <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <ItemGroup>

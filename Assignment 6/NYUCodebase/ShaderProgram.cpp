@@ -24,6 +24,7 @@ ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentS
     projectionMatrixUniform = glGetUniformLocation(programID, "projectionMatrix");
     viewMatrixUniform = glGetUniformLocation(programID, "viewMatrix");
 	colorUniform = glGetUniformLocation(programID, "color");
+	effectUniform = glGetUniformLocation(programID, "effectCutoff");
     
     positionAttribute = glGetAttribLocation(programID, "position");
     texCoordAttribute = glGetAttribLocation(programID, "texCoord");
@@ -96,9 +97,15 @@ void ShaderProgram::setProjectionMatrix(const Matrix &matrix) {
     glUniformMatrix4fv(projectionMatrixUniform, 1, GL_FALSE, matrix.ml);    
 }
 
-void ShaderProgram::setColor(float red, float green, float blue)
+void ShaderProgram::setColor(float red, float green, float blue, float alpha)
 {
-	float c[3] = { red, green, blue };
+	float c[4] = { red, green, blue, alpha };
 	glUseProgram(programID);
-	glUniform3fv(colorUniform, 1, c);
+	glUniform4fv(colorUniform, 1, c);
+}
+
+void ShaderProgram::setEffectCutoff(float c)
+{
+	glUseProgram(programID);
+	glUniform1f(effectUniform, c);
 }

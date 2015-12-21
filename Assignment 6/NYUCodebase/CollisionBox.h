@@ -5,8 +5,8 @@
 
 struct Point
 {
-	float x;
-	float y;
+	float x = 0.f;
+	float y = 0.f;
 };
 
 struct AABB
@@ -14,8 +14,8 @@ struct AABB
 	Point center;
 	Point offset;
 
-	float width;
-	float height;
+	float width = 0.f;
+	float height = 0.f;
 
 	float halfWidth() const { return width / 2.f; }
 	float halfHeight() const { return height / 2.f; }
