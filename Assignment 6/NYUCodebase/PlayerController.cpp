@@ -66,7 +66,7 @@ PlayerInput PlayerController::getInputDirection()
 	float xd = getInputX();
 	float yd = getInputY();
 
-	if (std::abs(xd) < std::abs(yd))
+	if (std::abs(xd) <= std::abs(yd))
 		return (yd > 0.f ? UP : DOWN);
 	else if (xd == 0.f)
 		return NO_DIRECTION;
